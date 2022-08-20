@@ -10,9 +10,9 @@ const {
 } = require("../controllers/user.controller");
 //  creating a route
 
-router.get("/auth/getallusers", authenticate, getAllUsers);
-router.get("/auth/countusers", authenticate, countUsers);
-router.get("/auth/getsingleuser", authenticate, getSingleUser);
+router.get("/users", authenticate, getAllUsers);
+router.get("/countusers", authenticate, countUsers);
+router.get("/singleuser", authenticate, getSingleUser);
 
 //    exporting modules
 module.exports = router;
