@@ -10,11 +10,11 @@ const {
   deleteProduct,
 } = require("../controllers/product.controller");
 
-router.post("/addproduct", authenticate, addProduct);
-router.get("/fetchAllproduct", authenticate, fetchAllProduct);
-router.get("/fetchsingleproduct", authenticate, fetchSingleProduct);
-router.get("/fetchProductByname", authenticate, fetchProductByname);
-router.patch("/updateProduct", authenticate, updateProduct);
-router.delete("/deleteProduct", authenticate, deleteProduct);
+router.post("/product", authenticate, addProduct);
+router.get("/product", authenticate, fetchAllProduct);
+router.get("/singleproduct", authenticate, fetchSingleProduct);
+router.get("/ProductByname", authenticate, fetchProductByname);
+router.patch("/Product", authenticate, updateProduct);
+router.delete("/Product", authenticate, deleteProduct);
 
 module.exports = router;
