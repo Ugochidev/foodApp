@@ -46,9 +46,6 @@ const userSchema = new Schema(
       enum: ["user", "supervisor", "admin", "superAdmin"],
       default: "user",
     },
-    otp: {
-      type: Number
-    },
     dateCreated: {
       type: String,
       required: true,

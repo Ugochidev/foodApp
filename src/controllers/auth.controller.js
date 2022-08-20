@@ -54,7 +54,6 @@ const otp = `${Math.floor(100000 + Math.random() * 900000)}`;
       lastName,
       phoneNumber,
       email,
-      otp,
       role: role || "user",
       password: hashPassword,
     });
@@ -68,10 +67,8 @@ const otp = `${Math.floor(100000 + Math.random() * 900000)}`;
     return res.status(201).json({
       message: "User  created",
       otp,
-      newUser,
     });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({
       message: error.message,
     });
@@ -84,7 +81,7 @@ const verifyEmail = async (req, res, next) => {
   try {
     const { email } = req.query;
     const { otp } = req.body;
-    const user = await User.findOne({ email:otp }).select("isVerfied");
+    const user = await User.findOne({ email }).select("isVerfied");
     if (user.isVerified) {
       return res.status(200).json({
         message: "User verified already",
@@ -116,11 +113,11 @@ const resendVerificationMail = async (req, res, next) => {
         message: "This email has already been verified.",
       });
     }
-    const url = "shopNsmile.com";
+    const otp = `${Math.floor(100000 + Math.random() * 900000)}`;
     let mailOptions = {
       to: emailExists.email,
       subject: "Verify Email",
-      text: `Hi ${emailExists.firstName.toUpperCase()}, Pls verify your email. ${url}`,
+      text: `Hi ${emailExists.firstName.toUpperCase()}, Pls verify your email. ${otp}`,
     };
     sendMail(mailOptions);
     return res.status(200).json({

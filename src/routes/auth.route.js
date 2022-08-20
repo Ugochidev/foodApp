@@ -15,7 +15,7 @@ router.post(
   "/user",
  createUser
 );
-router.get("/verifyemail", verifyEmail);
+router.post("/verifyemail", verifyEmail);
 router.post("/resendverificationmail", resendVerificationMail);
 router.post("/login", login);
 router.post("/forgetpasswordlink/", forgetPasswordLink);
