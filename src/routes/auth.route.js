@@ -18,8 +18,8 @@ router.post(
 router.post("/verifyemail", verifyEmail);
 router.post("/resendverificationmail", resendVerificationMail);
 router.post("/login", login);
-router.post("/forgetpasswordlink/", forgetPasswordLink);
-router.patch("/changeassword/", changePassword);
+router.post("/forgetpasswordlink", forgetPasswordLink);
+router.patch("/changeassword", changePassword);
 router.patch("/resetpassword", authenticate, resetPassword);
 
 module.exports = router
