@@ -8,6 +8,7 @@ const authRoute = require("./routes/auth.route");
 const userRoute = require("./routes/user.route");
 const productRoute = require("./routes/product.route")
 const requisitionRoute = require("./routes/requisition.route");
+const paymentRoute = require("./routes/payment.route");
 
 //  middleware
 app.use(express.json());
@@ -27,6 +28,7 @@ app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/product", productRoute)
 app.use("/api/v1/requisition", requisitionRoute);
+app.use("/api/v1/payment", paymentRoute);
 
 app.listen(PORT, async () => {
   console.log(`The app is listening on PORT ${PORT}`);

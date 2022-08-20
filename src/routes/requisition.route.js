@@ -9,34 +9,10 @@ const {
   deleteRequisition,
 } = require("../controllers/requisition.controller");
 
-router.post(
-  "/createRequisition",
-  authenticate,
- 
-  
-  createRequisition
-);
-router.get(
-  "/fetchrequisition",
-  authenticate,
- 
-  
-  fetchRequisition
-);
-router.get(
-  "/fetchAllRequisition",
-  authenticate,
-  fetchAllRequisition
-);
-router.patch(
-  "/updateRequisition",
-  authenticate,
-  updateRequisition
-);
-router.delete(
-  "/deleteRequisition",
-  authenticate,
-  deleteRequisition
-);
+router.post("/requisition", authenticate, createRequisition);
+router.get("/requisition", authenticate, fetchRequisition);
+router.get("/fetchAllRequisition", authenticate, fetchAllRequisition);
+router.patch("/updateRequisition", authenticate, updateRequisition);
+router.delete("/deleteRequisition", authenticate, deleteRequisition);
 
 module.exports = router;

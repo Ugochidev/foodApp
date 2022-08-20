@@ -43,8 +43,8 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ["basic", "supervisor", "admin", "superAdmin"],
-      default: "basic",
+      enum: ["user", "supervisor", "admin", "superAdmin"],
+      default: "user",
     },
     dateCreated: {
       type: String,

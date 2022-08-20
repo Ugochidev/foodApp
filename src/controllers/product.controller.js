@@ -4,7 +4,6 @@ const uuid = require("uuid");
 const addProduct = async (req, res, next) => {
   try {
     const {
-      categories,
       foodName,
       pricePerItem,
     } = req.body;

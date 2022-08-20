@@ -1,16 +1,28 @@
 const Requisition = require("../models/requisition.model");
 const uuid = require("uuid");
+const User = require("../models/user.model");
+const Product = require("../models/product.model");
 
 const createRequisition = async (req, res, next) => {
   try {
-    const { productId, userId, dateCreated, quantityRequested } =
-      req.body;
+    const { productId, userId } = req.query;
+    const { dateCreated, quantityRequested } = req.body;
+    const product = await Product.findOne({ productId });
+    if (!product) {
+      return res.status(404).json({ message: "NO product found" });
+    }
+    const user = await User.findOne({ userId });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+  const totalAmount = quantityRequested * product.pricePerItem
     const newRequisition = new Requisition({
       requisitionId: uuid.v4(),
-      productId,
-      userId,
+      productId: product._id,
+      userId: user._id,
       dateCreated,
       quantityRequested,
+      totalAmount,
     });
     await newRequisition.save();
     return res
@@ -95,13 +107,16 @@ const deleteRequisition = async (req, res, next) => {
     }
     return res
       .status(200)
-      .json({ message: "Requisition deleted successfully ....",});
+      .json({ message: "Requisition deleted successfully ...." });
   } catch (error) {
     return res.status(500).json({
       messsage: error.message,
     });
   }
 };
+
+
+
 module.exports = {
   createRequisition,
   fetchRequisition,

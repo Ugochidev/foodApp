@@ -13,7 +13,6 @@ const {
 
 router.post(
   "/user",
-  authenticate,
  createUser
 );
 router.get("/verifyemail", verifyEmail);

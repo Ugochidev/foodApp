@@ -24,6 +24,10 @@ const requisitionSchema = new Schema(
       type: Number,
       required: true,
     },
+    totalAmount: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,
