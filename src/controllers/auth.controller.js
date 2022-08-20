@@ -46,7 +46,7 @@ const createUser = async (req, res, next) => {
     }
     // hashing password
     const hashPassword = await bcrypt.hash(password, 10);
-
+const otp = `${Math.floor(100000 + Math.random() * 900000)}`;
     // create  a new User
     const newUser = await User({
       userId: uuid.v4(),
@@ -54,11 +54,11 @@ const createUser = async (req, res, next) => {
       lastName,
       phoneNumber,
       email,
+      otp,
       role: role || "user",
       password: hashPassword,
     });
     await newUser.save();
-    const otp = `${Math.floor(100000 + Math.random() * 900000)}`;
     let mailOptions = {
       to: newUser.email,
       subject: "Verify Email",
@@ -68,6 +68,7 @@ const createUser = async (req, res, next) => {
     return res.status(201).json({
       message: "User  created",
       otp,
+      newUser,
     });
   } catch (error) {
     console.log(error);
@@ -82,7 +83,8 @@ const createUser = async (req, res, next) => {
 const verifyEmail = async (req, res, next) => {
   try {
     const { email } = req.query;
-    const user = await User.findOne({ email }).select("isVerfied");
+    const { otp } = req.body;
+    const user = await User.findOne({ email:otp }).select("isVerfied");
     if (user.isVerified) {
       return res.status(200).json({
         message: "User verified already",
