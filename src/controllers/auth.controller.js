@@ -58,15 +58,16 @@ const createUser = async (req, res, next) => {
       password: hashPassword,
     });
     await newUser.save();
-    const url = "foodapp.com";
+    const otp = `${Math.floor(100000 + Math.random() * 900000)}`;
     let mailOptions = {
       to: newUser.email,
       subject: "Verify Email",
-      text: `Hi ${newUser.firstName.toUpperCase()}, Pls verify your email. ${url}`,
+      text: `Hi ${newUser.firstName.toUpperCase()}, Pls verify your email. ${otp}`,
     };
     sendMail(mailOptions);
     return res.status(201).json({
       message: "User  created",
+      otp,
     });
   } catch (error) {
     console.log(error);
