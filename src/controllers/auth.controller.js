@@ -67,7 +67,6 @@ const createUser = async (req, res, next) => {
     sendMail(mailOptions);
     return res.status(201).json({
       message: "User  created",
-      newUser,
     });
   } catch (error) {
     console.log(error);
