@@ -57,7 +57,7 @@ const fetchSingleProduct = async (req, res, next) => {
 
 const fetchProductByname = async (req, res, next) => {
   try {
-    const { productName } = req.body;
+    const { foodName } = req.body;
     const product = await Product.find();
     if (!product) {
       return res.status(400).json({
@@ -67,7 +67,7 @@ const fetchProductByname = async (req, res, next) => {
     let searchResult = [];
     product.forEach((result) => {
       if (
-        result.productName.toLowerCase().includes(productName.toLowerCase())
+        result.foodName.toLowerCase().includes(foodName.toLowerCase())
       ) {
         searchResult.push(result);
       }
