@@ -11,8 +11,8 @@ const {
 
 router.post("/requisition", authenticate, createRequisition);
 router.get("/requisition", authenticate, fetchRequisition);
-router.get("/fetchAllRequisition", authenticate, fetchAllRequisition);
-router.patch("/updateRequisition", authenticate, updateRequisition);
-router.delete("/deleteRequisition", authenticate, deleteRequisition);
+router.get("/requisitions", authenticate, fetchAllRequisition);
+router.patch("/requisition", authenticate, updateRequisition);
+router.delete("/requisition", authenticate, deleteRequisition);
 
 module.exports = router;
