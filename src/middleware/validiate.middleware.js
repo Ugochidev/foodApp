@@ -13,7 +13,7 @@ const validateRegister = Joi.object({
   confirmPassword: Joi.string().min(8).required(),
 });
 const validatePassword = Joi.object({
-  password: Joi.string().min(8).required(),
+  newPassword: Joi.string().min(8).required(),
   confirmPassword: Joi.string().min(8).required(),
 });
 const validateNewPassword = Joi.object({
