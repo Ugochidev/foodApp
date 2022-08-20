@@ -122,6 +122,7 @@ const resendVerificationMail = async (req, res, next) => {
     sendMail(mailOptions);
     return res.status(200).json({
       message: `Hi ${emailExists.firstName.toUpperCase()}, Please check your email for verification.`,
+      otp,
     });
   } catch (error) {
     return res.status(500).json({
