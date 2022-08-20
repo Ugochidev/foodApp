@@ -237,7 +237,7 @@ const resetPassword = async (req, res, next) => {
       return res.status(400).json({ message: "Password do not match." });
     }
     const hashPassword = await bcrypt.hash(confirmPassword, 10);
-    await User.updateOne({ _id }, { password: hashPassword });
+    await User.updateOne({ userId }, { password: hashPassword });
     return res.status(200).json({
       message: `Password has been updated successfully.`,
     });
