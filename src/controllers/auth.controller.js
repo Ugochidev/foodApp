@@ -224,8 +224,8 @@ const resetPassword = async (req, res, next) => {
   try {
     const { oldPassword, newPassword, confirmPassword } = req.body;
     await validateNewPassword.validateAsync(req.body);
-    const { _id } = req.user;
-    const loggedUser = await User.findOne({ _id });
+    const { userId } = req.user;
+    const loggedUser = await User.findOne({ userId });
     const passwordMatch = await bcrypt.compare(
       oldPassword,
       loggedUser.password
